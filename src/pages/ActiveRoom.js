@@ -49,17 +49,17 @@ const ActiveRoom = ({io}) => {
     <Layout>
         {loading ? <p>Loading...</p>:
         isJoined ? 
-        <div>
-            <h1>{roomData.joinedRoomID?.name}</h1>
-            <h3>Active Members: {roomData.joinedRoomID?.members.length}</h3>
-            <div>
-                <button style={{backgroundColor: 'red', color: 'white'}} onClick={()=>handleLeaveRoom(roomData.joinedRoomID.name, JSON.parse(Cookies.get('quizz-user')).userID)}>Leave Room</button>
-                <button style={{backgroundColor: 'blue', color: 'white'}} onClick={()=>handleEnterRoom(roomData.joinedRoomID.name, JSON.parse(Cookies.get('quizz-user')).userID)}>Enter Room</button>
+        <div className='flex flex-col items-center'>
+            <h1 className='text-5xl mt-5'>{roomData.joinedRoomID?.name}</h1>
+            <h3 className='text-4xl mt-3'>Active Members: {roomData.joinedRoomID?.members.length}</h3>
+            <div className='flex gap-4 mt-5'>
+                <button className='delete-btn px-2 py-1' onClick={()=>handleLeaveRoom(roomData.joinedRoomID.name, JSON.parse(Cookies.get('quizz-user')).userID)}>Leave Room</button>
+                <button className='join-btn px-2 py-1' onClick={()=>handleEnterRoom(roomData.joinedRoomID.name, JSON.parse(Cookies.get('quizz-user')).userID)}>Enter Room</button>
             </div>
         </div>
         :
-        <div>
-            <h1>Join a room to see details</h1>
+        <div className='h-[70vh] flex items-center justify-center'>
+            <h1 className='text-2xl'>Join a room to see details</h1>
         </div>}
     </Layout>
   )

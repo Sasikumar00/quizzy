@@ -1,9 +1,18 @@
+*{
+    color: rgb(34, 34, 34);
+    font-family: 'Poppins', sans-serif;;
+}
+#layout-component{
+    min-height: 100vh;
+
+}
 .navigation-bar{
+    font-size: 1.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
-    background-color: yellowgreen;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid rgba(85, 85, 85, 0.333);
 }
 
 .nav-links{
@@ -11,5 +20,101 @@
     list-style: none;
 }
 .nav-links li{
+    position: relative;
     padding: 5px 10px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    z-index: 1;
+    overflow: hidden;
+}
+.nav-links li::before{
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 0 5px 5px 0;
+    background-color: #7743DB;
+    transition: all .4s ease-in-out;
+    transform: translateX(-200px);
+}
+.nav-links li:hover::before{
+    transform: translateX(0);
+}
+.nav-links li:hover{
+    color: white;
+}
+
+.create-room-btn{
+    transition: all .3s ease-in-out;
+}
+.create-room-btn:hover{
+    background-color: transparent;
+    color: #7743DB;
+}
+.join-btn{
+    position: relative;
+    overflow: hidden;
+    transition: all .4s ease-in-out;
+}
+.join-btn::before{
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #7743DB;
+    transition: all .4s ease-in-out;
+    transform: translateX(-200px);
+}
+
+.join-btn:hover::before{
+    transform: translateX(0);
+}
+.join-btn:hover{
+    color: white;
+    border: 1px solid #7743DB;
+}
+.delete-btn, .start-btn, .stop-btn{
+    position: relative;
+    overflow: hidden;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.start-btn:disabled{
+    color: gray;
+    cursor: auto;
+}
+.delete-btn::before, .start-btn::before, .stop-btn::before{
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all .4s ease-in-out;
+    transform: translateX(-200px);
+}
+.delete-btn::before{
+    background-color: rgb(226, 15, 15);
+}
+.start-btn::before{
+    background-color: #7743DB;
+}
+.stop-btn::before{
+    background-color: rgb(233, 233, 21);
+}
+.delete-btn:hover::before, .start-btn:hover::before, .stop-btn:hover::before{
+    transform: translateX(0);
+}
+.delete-btn:hover, .stop-btn:hover{
+    color: white;
+}
+.delete-btn:hover{
+    border: 1px solid rgb(226, 15, 15);
 }

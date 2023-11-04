@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Layout from '../components/Layout';
 import { toast } from 'react-toastify';
+import {IoIosContact} from 'react-icons/io'
+import Typed from 'react-typed';
 
 const Room = ({io}) => {
     const navigate=useNavigate();
@@ -52,33 +54,39 @@ const Room = ({io}) => {
     }
   return (
     <Layout>
-        <h1>{params.roomID}</h1>
+        <h1 className='text-5xl text-center mt-5'>{params.roomID}</h1>
         {loading ? <p>Loading...</p>:
-        <div>
-            <h1>Admin: {roomData.creatorID.username}</h1>
-            <h2>{roomData.status==='waiting'?'Waiting for admin to start':'Starting Quiz...'}</h2>
-            <div>
-                <h2>Active Members:</h2>
-                <div>
-                    {roomData.members?.map((member, index)=>(
-                        <h3 key={index}>{member.username}</h3>
-                    ))}
-                </div>
+        <div className='relative'>
+            <h1 className='text-xl text-center'>Admin: {roomData.creatorID.username}</h1>
+            <div className='text-4xl font-semibold text-center mt-5 text-[#7743DB]'>
+            <Typed
+            strings={[roomData.status==='waiting'?'Waiting for admin to start':'Starting Quiz...']} 
+            typeSpeed={40} loop></Typed>
             </div>
-            <div>
-                <h1>Messages</h1>
+            <div className='grid grid-cols-2 gap-3 mt-10 px-5'>
                 <div>
-                    <ul style={{listStyle: 'none'}}>
-                        {messages.map((msg,index)=>(
-                            <li key={index}>{msg}</li>
+                    <h2 className='text-3xl text-center'>Active Members:</h2>
+                    <div className='mt-2 rounded-md h-[10rem] bg-[#7743DB] pt-[1rem]'>
+                        {roomData.members?.map((member, index)=>(
+                            <h3 className='text-2xl text-white font-semibold flex items-center ml-[5rem] mt-[1rem]' key={index}><IoIosContact className='mr-3'/>{member.username}</h3>
                         ))}
-                    </ul>
+                    </div>
+                </div>
+                <div className='flex flex-col'>
+                    <h1 className='text-3xl text-center'>Messages</h1>
+                    <div className='border h-[10rem] rounded-md overflow-y-scroll mt-2 p-5'>
+                        <ul style={{listStyle: 'none'}}>
+                            {messages.map((msg,index)=>(
+                                <li key={index}>{msg}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <input className='border w-[60%] outline-none mx-auto border-black/60 px-2 py-1 rounded-md mt-2' name='message' value={message} placeholder='Enter a message' onChange={(e)=>{
+                        setMessage(e.target.value);
+                    }}/>
+                    <button className='mt-2 bg-[#7743DB] text-white rounded-md text-xl w-[30%] mx-auto' onClick={()=>sendMessageToUser(params.roomID, JSON.parse(Cookies.get('quizz-user')).username)}>Send Message</button>
                 </div>
             </div>
-            <input name='message' value={message} placeholder='Enter a message' onChange={(e)=>{
-                setMessage(e.target.value);
-            }}/>
-            <button onClick={()=>sendMessageToUser(params.roomID, JSON.parse(Cookies.get('quizz-user')).username)}>Send Message</button>
         </div>}
     </Layout>
   )

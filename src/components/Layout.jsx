@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 const Layout = ({children}) => {
   return (
-    <div>
+    <div id='layout-component'>
         <ToastContainer limit={1}/>
         <Navbar/>
         {children}

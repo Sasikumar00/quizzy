@@ -9,10 +9,14 @@ const Navbar = () => {
     const [roomData, setRoomData] = useState({roomName: '', creatorID: ''})
     const [socket, setSocket] = useState('');
     const handleRoomCreate = async()=>{
+        if(roomData.roomName.length<3){
+            return toast.error('Room name must contain atleast 3 characters')
+        }
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/create-room`,{...roomData});
         if(res.data.status==='success'){
             socket.emit('newroomcreated');
             toast.success(res.data.message);
+            setRoomData({...roomData, roomName: ''});
         }
         else{
             toast.error(res.data.message);
@@ -37,10 +41,10 @@ const Navbar = () => {
             </ul>
         </nav>
         <div>
-            <input name='room_name' placeholder='Enter room name' onChange={(e)=>{
+            <input value={roomData.roomName} className='px-2 rounded-tl-md rounded-bl-md outline-none border border-black' name='room_name' placeholder='Enter room name' onChange={(e)=>{
                 setRoomData({...roomData, roomName: e.target.value});
             }}/>
-            <button onClick={handleRoomCreate}>Create Room</button>
+            <button className='create-room-btn bg-[#7743DB] text-white px-2 rounded-tr-md rounded-br-md border border-[#7743DB]' onClick={handleRoomCreate}>Create Room</button>
         </div>
     </div>
   )

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Typed from 'react-typed';
 
 const SignUp = ({io}) => {
     const navigate = useNavigate();
@@ -34,16 +35,21 @@ const SignUp = ({io}) => {
     //eslint-disable-next-line
     },[])
   return (
-    <div>
-        <h1>Sign Up</h1>
-        <input name='username' value={username} placeholder='Enter a username' onChange={(e)=>{
+    <div className='h-[90vh] flex flex-col items-center justify-center'>
+        <div className='flex justify-center'>
+        <Typed className='text-5xl' strings={['Welcome To Quizzy']} typeSpeed={100} loop></Typed>
+        </div>
+        <div className='bg-[#7743DB] flex flex-col px-5 py-10 mt-[3rem] rounded-md'>
+        <h1 className='text-4xl text-white text-center'>Sign Up</h1>
+        <input className='mt-5 outline-none rounded-md px-2 py-1' name='username' value={username} placeholder='Enter a username' onChange={(e)=>{
             setUsername(e.target.value);
             if(error.length>=1){
                 setError('');
             }
         }}/>
         {error && <p style={{color: 'red'}}>{error}</p>}
-        <button onClick={redirectToLobby}>Create user</button>
+        <button className='mt-5 border rounded-md text-white border-white hover:bg-white hover:text-[#222222] transition-all ease-in-out duration-300' onClick={redirectToLobby}>Create user</button>
+        </div>
     </div>
   )
 }
