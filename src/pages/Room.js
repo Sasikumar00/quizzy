@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import Layout from '../components/Layout';
 import { toast } from 'react-toastify';
 import {IoIosContact} from 'react-icons/io'
-import Typed from 'react-typed';
+import { TypeAnimation } from 'react-type-animation';
 
 const Room = ({io}) => {
     const navigate=useNavigate();
@@ -57,11 +57,20 @@ const Room = ({io}) => {
         <h1 className='text-5xl text-center mt-5'>{params.roomID}</h1>
         {loading ? <p>Loading...</p>:
         <div className='relative'>
-            <h1 className='text-xl text-center'>Admin: {roomData.creatorID.username}</h1>
+            <h1 className='text-xl text-center'>Admin: {roomData.creatorID?.username}</h1>
             <div className='text-4xl font-semibold text-center mt-5 text-[#7743DB]'>
-            <Typed
-            strings={[roomData.status==='waiting'?'Waiting for admin to start':'Starting Quiz...']} 
-            typeSpeed={40} loop></Typed>
+            <TypeAnimation
+            sequence={[
+                roomData.status==='waiting'?'Waiting for admin to start':'Starting Quiz...',
+                1000,
+                '',
+                1000
+                ]}
+                wrapper="span"
+                speed={50}
+                style={{ fontSize: '3rem'}}
+                repeat={Infinity}
+            />
             </div>
             <div className='grid grid-cols-2 gap-3 mt-10 px-5'>
                 <div>
