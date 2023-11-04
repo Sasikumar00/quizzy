@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinner'
 
 const ActiveRoom = ({io}) => {
     const navigate = useNavigate();
@@ -47,7 +48,11 @@ const ActiveRoom = ({io}) => {
     },[io])
   return (
     <Layout>
-        {loading ? <p>Loading...</p>:
+        {loading ? 
+        <div className='w-full h-[70vh] flex items-center justify-center'>
+        <Spinner/>
+        </div>
+        :
         isJoined ? 
         <div className='flex flex-col items-center'>
             <h1 className='text-5xl mt-5'>{roomData.joinedRoomID?.name}</h1>

@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import { toast } from 'react-toastify';
 import {IoIosContact} from 'react-icons/io'
 import { TypeAnimation } from 'react-type-animation';
+import Spinner from '../components/Spinner'
 
 const Room = ({io}) => {
     const navigate=useNavigate();
@@ -55,7 +56,11 @@ const Room = ({io}) => {
   return (
     <Layout>
         <h1 className='text-5xl text-center mt-5'>{params.roomID}</h1>
-        {loading ? <p>Loading...</p>:
+        {loading ? 
+        <div className='w-full h-[70vh] flex items-center justify-center'>
+        <Spinner/>
+        </div>
+        :
         <div className='relative'>
             <h1 className='text-xl text-center'>Admin: {roomData.creatorID?.username}</h1>
             <div className='text-4xl font-semibold text-center mt-5 text-[#7743DB]'>

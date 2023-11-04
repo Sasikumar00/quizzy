@@ -118,3 +118,10 @@
 .delete-btn:hover{
     border: 1px solid rgb(226, 15, 15);
 }
+.question-option-card{
+    border: 2px solid #7743DB;
+    padding: 3rem 2rem;
+    border-radius: 5px;
+    min-width: 20rem;
+    cursor: pointer;
+}

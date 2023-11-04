@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-// import Typed from 'react-typed';
 import { TypeAnimation } from 'react-type-animation';
 
 const SignUp = ({io}) => {
