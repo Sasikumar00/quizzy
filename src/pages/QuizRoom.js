@@ -129,7 +129,7 @@ const QuizRoom = () => {
                 <div className='flex items-center justify-center mt-10'>
                   <button className='bg-yellow-500 text-white text-2xl px-5 py-2 rounded-md mx-auto' onClick={()=>{
                       setQcounter(0);
-                  }}>Submit</button>
+                  }}>Next</button>
                 </div>
             </div>
           ) : (
@@ -147,7 +147,7 @@ const QuizRoom = () => {
                   ]}
                   wrapper="span"
                   speed={40}
-                  style={{ fontSize: '4rem', color: '#7743DB', textAlign: 'center'}}
+                  style={{ fontSize: '5rem', color: '#7743DB'}}
                   repeat={Infinity}
               />
               <h3 className='text-2xl text-center mt-[4rem]'>Time Taken: {totalTime-5} sec</h3>
