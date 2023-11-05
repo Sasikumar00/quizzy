@@ -23,7 +23,7 @@ const Navbar = () => {
         }
     }
     useEffect(()=>{
-        const io = socketIO.connect('ws://localhost:8080');
+        const io = socketIO.connect(`ws://${process.env.REACT_APP_SOCKET_URL}`);
         setSocket(io);
         if(Cookies.get('quizz-user')){
             setRoomData({...roomData, creatorID: JSON.parse(Cookies.get('quizz-user')).userID});

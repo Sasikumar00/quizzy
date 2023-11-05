@@ -66,7 +66,7 @@ const QuizRoom = () => {
   },[questions, qcounter, currentIndex, totalQuestions])
 
   useEffect(() => {
-    const io = socketIO.connect('ws://localhost:8080');
+    const io = socketIO.connect(`ws://${process.env.REACT_APP_SOCKET_URL}`);
     io.emit('beginQuiz', { rID: params.quizID.split('-')[1],qID: params.quizID });
     setSocket(io);
     io.on('startingQuiz', () => {
