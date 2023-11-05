@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Room from './pages/Room';
@@ -12,7 +12,7 @@ import socketIO from 'socket.io-client';
 import QuizRoom from './pages/QuizRoom';
 
 function App() {
-  const [io] = useState(socketIO.connect('ws://localhost:8080'));
+  const [io] = useState(socketIO.connect(`ws://${process.env.REACT_APP_SOCKET_URL}`));
   return (
     <Routes>
       <Route path='/' element={<HomePage io={io}/>}/>
