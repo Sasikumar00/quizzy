@@ -47,6 +47,9 @@ const Room = ({io}) => {
             toast('Redirecting to quiz room...');
             return window.location.replace(`/room/quizroom/quiz-${params.roomID}`)
         })
+        io.on('roomdeleted', ()=>{
+            return window.location.replace('/room');
+        })
     //eslint-disable-next-line
     },[params.roomID])
     const sendMessageToUser = (rID,uID)=>{

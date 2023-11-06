@@ -20,6 +20,7 @@ const ActiveRoom = ({io}) => {
             if(room.joinedRoomID!=null){
                 setRoomData(room);
                 setIsJoined(true);
+                console.log(room);
             }
         }
         else{
@@ -46,6 +47,11 @@ const ActiveRoom = ({io}) => {
         setSocket(io);
         getUserDetails();
     },[io])
+
+    useEffect(()=>{
+        setRoomData({});
+        getUserDetails()
+    },[])
   return (
     <Layout>
         {loading ? 

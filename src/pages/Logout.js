@@ -18,8 +18,11 @@ const Logout = ({io}) => {
       }
     }
     useEffect(()=>{
+      io.emit('userloggedout', {uID: JSON.parse(Cookies.get('quizz-user')).userID});
+      io.on('userlogout-ack',()=>{
         removeUser();
-        io.disconnect();
+      })
+        // removeUser();
     //eslint-disable-next-line
     },[])
   return (
